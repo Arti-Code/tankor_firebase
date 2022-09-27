@@ -5,7 +5,14 @@ const db = firebase.database();
 
 const messages = document.getElementById('messages');
 let localDescription = document.getElementById('localSessionDescription');
+let btnStart = document.getElementById('btn_start');
+let btnStop = document.getElementById('btn_stop');
 let device_id = "kamera";
+
+btnStart.addEventListener('click', wait_answer)
+btnStop.addEventListener('click', stopConnection);
+btnStart.addEventListener('touchend', wait_answer)
+btnStop.addEventListener('touchend', stopConnection);
 
 let pc = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
 
@@ -77,15 +84,24 @@ function set_remote_sdp(data) {
       pc.setRemoteDescription(new RTCSessionDescription(sdp));
       info("[ANSWER]: OK");
       console.log("[ANSWER]: OK");
+      db_write(device_id, "answer", "");
+      btnStop.removeAttribute('hidden')
+      btnStart.setAttribute('hidden', 'true')
     } catch (e) {
       alert(e);
     }
   }
 };
 
-window.startSession = () => {
-  wait_answer();
-};
+function stopConnection() {
+  pc.close();
+  btnStop.setAttribute('hidden', 'true');
+  btnStart.removeAttribute('hidden');
+}
+
+//window.startSession = () => {
+//  wait_answer();
+//};
 
 //window.startSession = () => {
 //  let sd = document.getElementById('remoteSessionDescription').value
