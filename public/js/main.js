@@ -50,12 +50,10 @@ function init() {
   pc.onicecandidate = function (event) {
     if (event.candidate === null) {
       let lsd = btoa(JSON.stringify(pc.localDescription));
-      console.log("[OFFER]: " + "ok");
-      info("[OFFER] OK");
+      info("[OFFER]: ok");
       //db_write(device_id, "answer", "");
       db_write(device_id, "offer", lsd);
-      console.log("[ANSWER]: " + "waiting");
-      info("[ANSWER] waiting");
+      info("[ANSWER]: waiting");
       wait_answer();
     }
   };
@@ -70,10 +68,8 @@ function db_read() {
   let dbRef = db.ref().child("signaling").child("welcome")
   .get().then((snapshoot) => {
     if (snapshoot.exists()) {
-      console.log(snapshoot.val());
       info(snapshoot.val());
     } else {
-      console.log("empty snapshoot");
       info("empty snapshoot");
     }
   });
@@ -85,7 +81,8 @@ function db_write(device, msg_type, data) {
 };
 
 function info(text) {
-  messages.innerHTML = messages.innerHTML + text + '<br />';
+  console.log(text)
+  //messages.innerHTML = messages.innerHTML + text + '<br />';
 };
 
 function clearNegotiation() {
@@ -102,14 +99,13 @@ function wait_answer() {
 
 function set_remote_sdp(data) {
   if (data == "") {
-    console.log('empty answer')
+    info("empty answer");
     return;
   } else {
     try {
       let sdp = JSON.parse(atob(data));
       pc.setRemoteDescription(new RTCSessionDescription(sdp));
-      info("[ANSWER]: OK");
-      console.log("[ANSWER]: OK");
+      info("[ANSWER]: ok");
       db_write(device_id, "answer", "");
       btnStop.removeAttribute('hidden')
       btnStart.setAttribute('hidden', 'true')
