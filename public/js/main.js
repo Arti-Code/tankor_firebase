@@ -3,7 +3,7 @@ import {auth} from './auth.js';
 const app = firebase.initializeApp(auth);
 const db = firebase.database();
 
-const messages = document.getElementById('messages');
+const datachannel = document.getElementById('datachannel');
 //let localDescription = document.getElementById('localSessionDescription');
 let btnStart = document.getElementById('btn_start');
 let btnStop = document.getElementById('btn_stop');
@@ -12,6 +12,7 @@ let stat_connecting = document.getElementById('status_connecting');
 let stat_connected = document.getElementById('status_connected');
 let device_id = "kamera";
 let pc;
+let dc;
 
 btnStart.addEventListener('click', init)
 btnStop.addEventListener('click', stopConnection);
@@ -25,7 +26,8 @@ status_disconnected();
 function init() {
   pc = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
   pc.addTransceiver('video', {'direction': 'recvonly'});
-  
+  create_datachannel('LINK');
+
   pc.ontrack = function (event) {
     var el = document.createElement(event.track.kind)
     el.srcObject = event.streams[0]
@@ -63,6 +65,27 @@ function init() {
   };
 };
   
+function create_datachannel(channel_name) {
+  dc = pc.createDataChannel(channel_name);
+  
+  dc.onclose = () => {
+    info('link has closed');
+  };
+
+  dc.onopen = () => {
+    info('link has opened');
+  };
+
+  dc.onmessage = e => {
+    let data = `'${dc.label}': '${e.data}'`;
+    info(`'${dc.label}': '${e.data}'`);
+    show_data(data);
+  };
+};
+
+function show_data(data) {
+  datachannel.innerHTML += data + '\n';
+};
 
 function db_read() {
   let dbRef = db.ref().child("signaling").child("welcome")
@@ -116,6 +139,7 @@ function set_remote_sdp(data) {
 };
 
 function stopConnection() {
+  //dc.close();
   pc.close();
   btnStop.setAttribute('hidden', 'true');
   btnStart.removeAttribute('hidden');
