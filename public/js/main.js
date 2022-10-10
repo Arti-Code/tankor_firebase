@@ -7,17 +7,30 @@ const datachannel = document.getElementById('datachannel');
 //let localDescription = document.getElementById('localSessionDescription');
 let btnStart = document.getElementById('btn_start');
 let btnStop = document.getElementById('btn_stop');
+let btnRight = document.getElementById('btn_right');
+let btnLeft = document.getElementById('btn_left');
+let btnAhead = document.getElementById('btn_front');
+let btnBack = document.getElementById('btn_back');
 let stat_disconnected = document.getElementById('status_disconnected');
 let stat_connecting = document.getElementById('status_connecting');
 let stat_connected = document.getElementById('status_connected');
 let device_id = "kamera";
 let pc;
 let dc;
+let datachannel_on = false;
 
 btnStart.addEventListener('click', init)
 btnStop.addEventListener('click', stopConnection);
 btnStart.addEventListener('touchend', wait_answer)
 btnStop.addEventListener('touchend', stopConnection);
+btnAhead.addEventListener('click', moveFront);
+btnBack.addEventListener('click', moveBack);
+btnLeft.addEventListener('click', moveLeft);
+btnRight.addEventListener('click', moveRight);
+//btnAhead.addEventListener('touchend', moveFront);
+//btnBack.addEventListener('touchend', moveBack);
+//btnLeft.addEventListener('touchend', moveLeft);
+//btnRight.addEventListener('touchend', moveRight);
 
 clearNegotiation()
 status_disconnected();
@@ -69,10 +82,12 @@ function create_datachannel(channel_name) {
   dc = pc.createDataChannel(channel_name);
   
   dc.onclose = () => {
+    datachannel_on = false;
     info('link has closed');
   };
 
   dc.onopen = () => {
+    datachannel_on = true;
     info('link has opened');
   };
 
@@ -84,8 +99,15 @@ function create_datachannel(channel_name) {
 };
 
 function show_data(data) {
-  datachannel.innerHTML += data + '\n';
+  datachannel.innerHTML += data + '<br />';
 };
+
+function send_data(data) {
+  //if (datachannel_on) {
+  dc.send(data);
+  show_data(data);
+  //}
+}
 
 function db_read() {
   let dbRef = db.ref().child("signaling").child("welcome")
@@ -136,6 +158,22 @@ function set_remote_sdp(data) {
       alert(e);
     }
   }
+};
+
+function moveFront() {
+  send_data("front");
+};
+
+function moveBack() {
+  send_data("back");
+};
+
+function moveLeft() {
+  send_data("left");
+};
+
+function moveRight() {
+  send_data("right");
 };
 
 function stopConnection() {

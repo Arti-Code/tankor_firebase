@@ -32,15 +32,31 @@
       <div class="col-2 justify-content-center"></div>
     </div>
     
-    <div class="row">
-      <div class="col justify-content-center">
-        <div id="remoteVideos"></div> 
+    <div class="row py-2 h-80">
+      <div class="col-2 justify-content-center">
+        <div class="w-100 h-50 btn btn-primary" id="btn_right">
+          <i class="bi bi-arrow-right-square-fill"></i>
+        </div>
+        <div class="w-100 h-50 btn btn-primary" id="btn_left">
+          <i class="bi bi-arrow-left-square-fill"></i>
+        </div>
+      </div>
+      <div class="col-8 h-100 justify-content-center">
+        <div class="justify-content-center" id="remoteVideos"></div> 
+      </div>
+      <div class="col-2 justify-content-center">
+        <div class="w-100 h-50 btn btn-success" id="btn_front">
+          <i class="bi bi-arrow-up-square-fill"></i>
+        </div>
+        <div class="w-100 h-50 btn btn-danger" id="btn_back">
+          <i class="bi bi-arrow-down-square-fill"></i>
+        </div>
       </div>
     </div> 
 
     <div class="row">
       <div class="col">
-        <p id="datachannel"></p>
+        <div id="datachannel"></div>
       </div>
     </div>
 
