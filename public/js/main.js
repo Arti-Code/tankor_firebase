@@ -21,16 +21,22 @@ let datachannel_on = false;
 
 btnStart.addEventListener('click', init)
 btnStop.addEventListener('click', stopConnection);
-btnStart.addEventListener('touchend', wait_answer)
-btnStop.addEventListener('touchend', stopConnection);
-btnAhead.addEventListener('click', moveFront);
-btnBack.addEventListener('click', moveBack);
-btnLeft.addEventListener('click', moveLeft);
-btnRight.addEventListener('click', moveRight);
-//btnAhead.addEventListener('touchend', moveFront);
-//btnBack.addEventListener('touchend', moveBack);
-//btnLeft.addEventListener('touchend', moveLeft);
-//btnRight.addEventListener('touchend', moveRight);
+//btnStart.addEventListener('touchend', wait_answer)
+//btnStop.addEventListener('touchend', stopConnection);
+//btnAhead.addEventListener('click', moveFront);
+//btnBack.addEventListener('click', moveBack);
+//btnLeft.addEventListener('click', moveLeft);
+//btnRight.addEventListener('click', moveRight);
+
+btnAhead.addEventListener('touchstart', moveFront);
+btnBack.addEventListener('touchstart', moveBack);
+btnLeft.addEventListener('touchstart', moveLeft);
+btnRight.addEventListener('touchstart', moveRight);
+
+btnAhead.addEventListener('touchend', moveStop);
+btnBack.addEventListener('touchend', moveStop);
+btnLeft.addEventListener('touchend', moveStop);
+btnRight.addEventListener('touchend', moveStop);
 
 clearNegotiation()
 status_disconnected();
@@ -174,6 +180,10 @@ function moveLeft() {
 
 function moveRight() {
   send_data("right");
+};
+
+function moveStop() {
+  send_data("stop");
 };
 
 function stopConnection() {
