@@ -18,6 +18,7 @@ let device_id = "kamera";
 let pc;
 let dc;
 let datachannel_on = false;
+let vision = document.getElementById('remoteVideos')
 
 btnStart.addEventListener('click', init)
 btnStop.addEventListener('click', stopConnection);
@@ -52,7 +53,7 @@ function init() {
     el.srcObject = event.streams[0]
     el.autoplay = true
     el.controls = true
-    document.getElementById('remoteVideos').appendChild(el)
+    vision.appendChild(el)
   };
   
   pc.oniceconnectionstatechange = function (event) {
@@ -105,7 +106,8 @@ function create_datachannel(channel_name) {
 };
 
 function show_data(data) {
-  datachannel.innerHTML += data + '<br />';
+  datachannel.innerHTML = "";
+  datachannel.innerHTML = data;
 };
 
 function send_data(data) {
@@ -188,6 +190,7 @@ function moveStop() {
 
 function stopConnection() {
   //dc.close();
+  vision.removeChild(vision.lastChild);
   pc.close();
   btnStop.setAttribute('hidden', 'true');
   btnStart.removeAttribute('hidden');

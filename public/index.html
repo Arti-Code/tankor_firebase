@@ -19,17 +19,18 @@
     <div class="container mx-auto my-1">
     
     <div class="row">
-      <div class="col-3 justify-content-center">
+      <div class="col-3 justify-content-left">
         <button id="btn_start" class="btn btn-primary">START</button>
         <button id="btn_stop" class="btn btn-danger" hidden>STOP</button>
       </div>
-      <div class="col-2 justify-content-center"></div>
-      <div class="col-6 justify-content-between">
+      <div class="col-7 justify-content-center">
+        <h3 id="datachannel"></h3>
+      </div>
+      <div class="col-2 justify-content-right">
         <div id="status_disconnected" class="btn btn-danger" hidden><i class="bi bi-x-circle"></i></div>
         <div id="status_connecting" class="btn btn-warning" hidden><i class="bi bi-hourglass-split"></i></div>
         <div id="status_connected" class="btn btn-success" hidden><i class="bi bi-link-45deg"></i></div>
       </div>
-      <div class="col-2 justify-content-center"></div>
     </div>
     
     <div class="row py-2 h-80">
@@ -51,12 +52,6 @@
         <div class="w-100 h-50 btn btn-danger" id="btn_back">
           <i class="bi bi-arrow-down-square-fill"></i>
         </div>
-      </div>
-    </div> 
-
-    <div class="row">
-      <div class="col">
-        <div id="datachannel"></div>
       </div>
     </div>
 
