@@ -1,6 +1,54 @@
 .body {
     background-color: black;
 }
-#datachannel{
-    font-weight: bold;
+video {
+    width: 100%;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+    gap: 2px;
+    background-color: #000000;
+    padding: 4px;
+    border-width: 3px;
+    border-color: rgb(158, 158, 158);
+}
+.grid-row {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    border-width: 3px;
+    border-color: rgb(160, 160, 160);
+}
+.down_bar {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(4fr, 4fr, 4fr);
+    grid-template-rows: repeat(1, 50px);
+    gap: 10px;
+}
+
+.vision {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 5px;
+}
+
+.item {
+    display: grid;
+}
+.left {
+    background-color: rgb(140, 209, 204);
+}
+.right {
+    background-color: rgb(203, 213, 139);
+}
+.front {
+    background-color: rgb(0, 255, 26);
+}
+.back {
+    background-color: rgb(250, 96, 0);
 }

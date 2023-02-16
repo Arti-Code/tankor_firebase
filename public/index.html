@@ -16,48 +16,40 @@
 
   <body>
 
-    <div class="container mx-auto my-1">
-    
-    <div class="row">
-      <div class="col-3 justify-content-left">
-        <button id="btn_start" class="btn btn-primary">START</button>
-        <button id="btn_stop" class="btn btn-danger" hidden>STOP</button>
-      </div>
-      <div class="col-7 justify-content-center">
-        <h3 id="datachannel"></h3>
-      </div>
-      <div class="col-2 justify-content-right">
-        <div id="status_disconnected" class="btn btn-danger" hidden><i class="bi bi-x-circle"></i></div>
-        <div id="status_connecting" class="btn btn-warning" hidden><i class="bi bi-hourglass-split"></i></div>
-        <div id="status_connected" class="btn btn-success" hidden><i class="bi bi-link-45deg"></i></div>
-      </div>
+  <div class="wrapper">
+    <div class="grid-row">
+        <div id="btn_right" class="item right">
+        </div>
+        <div id="btn_left" class="item left">
+        </div>
     </div>
-    
-    <div class="row py-2 h-80">
-      <div class="col-2 justify-content-center">
-        <div class="w-100 h-50 btn btn-primary" id="btn_right">
-          <i class="bi bi-arrow-right-square-fill"></i>
-        </div>
-        <div class="w-100 h-50 btn btn-primary" id="btn_left">
-          <i class="bi bi-arrow-left-square-fill"></i>
-        </div>
-      </div>
-      <div class="col-8 h-100 justify-content-center">
-        <div class="justify-content-center" id="remoteVideos"></div> 
-      </div>
-      <div class="col-2 justify-content-center">
-        <div class="w-100 h-50 btn btn-success" id="btn_front">
-          <i class="bi bi-arrow-up-square-fill"></i>
-        </div>
-        <div class="w-100 h-50 btn btn-danger" id="btn_back">
-          <i class="bi bi-arrow-down-square-fill"></i>
-        </div>
-      </div>
+    <div class="vision">
+        <video mute controls="false" id="remoteVideos" autoplay="true" playsinline="true"></video>
     </div>
-
+    <div class="grid-row">
+        <div id="btn_front" class="item front">
+        </div>
+        <div id="btn_back" class="item back">
+        </div>
+    </div>
   </div>
+      
 
 
+  <div class="down_bar">
+    <div class="item">
+      <button id="btn_start" class="btn btn-primary">START</button>
+      <button id="btn_stop" class="btn btn-danger" hidden>STOP</button>
+    </div>
+    <div class="item">
+      <h3 id="datachannel"></h3>
+    </div>
+    <div class="item">
+      <div id="status_disconnected" class="btn btn-danger" hidden><i class="bi bi-x-circle"></i></div>
+      <div id="status_connecting" class="btn btn-warning" hidden><i class="bi bi-hourglass-split"></i></div>
+      <div id="status_connected" class="btn btn-success" hidden><i class="bi bi-link-45deg"></i></div>
+    </div>
+  </div>
 
     <script src="js/auth.js" type="module"></script>
     <script defer src="js/main.js" type="module"></script>
