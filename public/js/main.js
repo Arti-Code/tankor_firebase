@@ -3,7 +3,7 @@ import {auth} from './auth.js';
 const app = firebase.initializeApp(auth);
 const db = firebase.database();
 
-const datachannel = document.getElementById('datachannel');
+//const datachannel = document.getElementById('datachannel');
 //let localDescription = document.getElementById('localSessionDescription');
 let btnStart = document.getElementById('btn_start');
 let btnStop = document.getElementById('btn_stop');
@@ -17,17 +17,11 @@ let stat_connected = document.getElementById('status_connected');
 let device_id = "kamera";
 let pc;
 let dc;
-let datachannel_on = false;
+//let datachannel_on = false;
 let vision = document.getElementById('remoteVideos')
 
 btnStart.addEventListener('click', init)
 btnStop.addEventListener('click', stopConnection);
-//btnStart.addEventListener('touchend', wait_answer)
-//btnStop.addEventListener('touchend', stopConnection);
-//btnAhead.addEventListener('click', moveFront);
-//btnBack.addEventListener('click', moveBack);
-//btnLeft.addEventListener('click', moveLeft);
-//btnRight.addEventListener('click', moveRight);
 
 btnAhead.addEventListener('touchstart', moveFront);
 btnBack.addEventListener('touchstart', moveBack);
@@ -53,6 +47,8 @@ function init() {
     el.srcObject = event.streams[0]
     el.autoplay = true
     el.controls = true
+    el.style.width = "100%"
+    el.style.height = "100%"
     vision.appendChild(el)
   };
   
@@ -89,12 +85,12 @@ function create_datachannel(channel_name) {
   dc = pc.createDataChannel(channel_name);
   
   dc.onclose = () => {
-    datachannel_on = false;
+    //datachannel_on = false;
     info('link has closed');
   };
 
   dc.onopen = () => {
-    datachannel_on = true;
+    //datachannel_on = true;
     info('link has opened');
   };
 
@@ -106,8 +102,7 @@ function create_datachannel(channel_name) {
 };
 
 function show_data(data) {
-  datachannel.innerHTML = "";
-  datachannel.innerHTML = data;
+  info(data);
 };
 
 function send_data(data) {
