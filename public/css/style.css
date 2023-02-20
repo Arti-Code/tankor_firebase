@@ -1,6 +1,73 @@
 .body {
-    background-color: black;
+    background-color: rgb(40, 44, 92);
 }
-#datachannel{
-    font-weight: bold;
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    height: 100%;
+    gap: 2px;
+    background-color: #aaaaaa;
+    padding: 2px;
+    border-width: 2px;
+    border-color: rgb(158, 158, 158);
+}
+
+.grid-row {
+    display: grid;
+    grid-template-rows: 20% 40% 40%;
+    border-width: 2px;
+    border-color: rgb(160, 160, 160);
+}
+
+.vision {
+    margin-left: auto;
+    margin-right: auto;
+    gap: 2px;
+    border-color: rgb(0, 140, 255);
+    min-height: 400px;
+}
+
+.item {
+
+}
+
+.green {
+    background-color: rgb(0, 255, 21);
+    color: black;
+    font-style: bold;
+    font-size: 1.2rem;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.yellow {
+    background-color: rgb(255, 208, 0);
+    color: rgb(0, 0, 0);
+    font-style: bold;
+    font-size: 1.2rem;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.red {
+    background-color: rgb(255, 38, 0);
+    color: rgb(255, 255, 255);
+    font-style: bold;
+    font-size: 1.2rem;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.left {
+    background-color: rgb(140, 209, 204);
+}
+.right {
+    background-color: rgb(203, 213, 139);
+}
+.front {
+    background-color: rgb(0, 255, 26);
+}
+.back {
+    background-color: rgb(250, 96, 0);
 }

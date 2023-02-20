@@ -1,66 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RTP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="/__/firebase/9.10.0/firebase-app-compat.js"></script>
-    <script defer src="/__/firebase/9.10.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.10.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-  </head>
 
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RTP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="/__/firebase/9.10.0/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/9.10.0/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/9.10.0/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+</head>
 
-    <div class="container mx-auto my-1">
-    
-    <div class="row">
-      <div class="col-3 justify-content-left">
-        <button id="btn_start" class="btn btn-primary">START</button>
-        <button id="btn_stop" class="btn btn-danger" hidden>STOP</button>
+<body>
+  <div class="wrapper">
+    <div class="grid-row">
+      <div class="item">
+        <div id="btn_start" class="green">START</div>
+        <div id="btn_stop" class="yellow" hidden>STOP</div>
+        <!-- <button id="btn_start" class="btn btn-primary">START</button>
+        <button id="btn_stop" class="btn btn-danger" hidden>STOP</button> -->
       </div>
-      <div class="col-7 justify-content-center">
-        <h3 id="datachannel"></h3>
+      <div id="btn_right" class="item right">
       </div>
-      <div class="col-2 justify-content-right">
-        <div id="status_disconnected" class="btn btn-danger" hidden><i class="bi bi-x-circle"></i></div>
-        <div id="status_connecting" class="btn btn-warning" hidden><i class="bi bi-hourglass-split"></i></div>
-        <div id="status_connected" class="btn btn-success" hidden><i class="bi bi-link-45deg"></i></div>
+      <div id="btn_left" class="item left">
       </div>
     </div>
-    
-    <div class="row py-2 h-80">
-      <div class="col-2 justify-content-center">
-        <div class="w-100 h-50 btn btn-primary" id="btn_right">
-          <i class="bi bi-arrow-right-square-fill"></i>
-        </div>
-        <div class="w-100 h-50 btn btn-primary" id="btn_left">
-          <i class="bi bi-arrow-left-square-fill"></i>
-        </div>
+    <div class="vision" id="remoteVideos">
+    </div>
+    <div class="grid-row">
+      <div class="item">
+        <div id="status_disconnected" class="red" hidden><i class="red bi bi-x-circle"></i></div>
+        <div id="status_connecting" class="yellow" hidden><i class="yellow bi bi-hourglass-split"></i></div>
+        <div id="status_connected" class="green" hidden><i class="green bi bi-link-45deg"></i></div>
       </div>
-      <div class="col-8 h-100 justify-content-center">
-        <div class="justify-content-center" id="remoteVideos"></div> 
+      <div id="btn_front" class="item front">
       </div>
-      <div class="col-2 justify-content-center">
-        <div class="w-100 h-50 btn btn-success" id="btn_front">
-          <i class="bi bi-arrow-up-square-fill"></i>
-        </div>
-        <div class="w-100 h-50 btn btn-danger" id="btn_back">
-          <i class="bi bi-arrow-down-square-fill"></i>
-        </div>
+      <div id="btn_back" class="item back">
       </div>
     </div>
-
   </div>
 
+  <script src="js/auth.js" type="module"></script>
+  <script defer src="js/main.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-
-    <script src="js/auth.js" type="module"></script>
-    <script defer src="js/main.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
 </html>
